@@ -1,0 +1,9 @@
+'To Add apostrophe to a complete range using direct script. No need to start/end a subroutine. It's faster!
+'Open Worksheet and have data ready
+'Macro enabled workbook hit ALT + F11
+'CTRL+G
+'Copy and Paste (or write) the command line below (eyeball the range to ensure you bring the last row).
+
+for each v in range("K2:K5000") : v.value = "'" & v.value : next
+
+

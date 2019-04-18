@@ -1,0 +1,38 @@
+'Combine Multiple Workbooks, into mutliple worksheets in a single workbook.
+'Place all files in single location. 
+'Change the Path Name Below to the files
+
+Sub GetSheets()
+Path = "C:\Users\dt\Desktop\dt kte\"
+Filename = Dir(Path & "*.xls")
+  Do While Filename <> ""
+  Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+     For Each Sheet In ActiveWorkbook.Sheets
+     Sheet.Copy After:=ThisWorkbook.Sheets(1)
+  Next Sheet
+     Workbooks(Filename).Close
+     Filename = Dir()
+  Loop
+End Sub
+
+
+
+
+
+'PURPOSE: Delete any blanks sheets in the active workbook
+Sub RemoveBlankSheets_ActiveWorkbook()
+
+Dim sht As Worksheet
+
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+  
+For Each sht In ActiveWorkbook.Worksheets
+  If WorksheetFunction.CountA(sht.Cells) = 0 And _
+    ActiveWorkbook.Sheets.Count > 1 Then sht.Delete
+Next sht
+
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+
+End Sub

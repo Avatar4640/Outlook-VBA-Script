@@ -1,0 +1,17 @@
+echo "# Outlook-VBA-Script" >> README.md
+git init
+'Run A script function from Outlook Rules. To execute external tasks or actions on email and attachments.
+Public Sub saveAttachtoDisk (itm As Outlook.MailItem)
+Dim objAtt As Outlook.Attachment
+Dim saveFolder As String
+'modify folder location to desired outside destination
+saveFolder = "c:\temp\"
+     For Each objAtt In itm.Attachments        
+          objAtt.SaveAsFile saveFolder & "\" & objAtt.DisplayName        
+          Set objAtt = Nothing    
+     Next
+     End Sub
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Avatar4640/Outlook-VBA-Script.git
+git push -u origin master
